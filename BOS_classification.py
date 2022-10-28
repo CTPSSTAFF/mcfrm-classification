@@ -8,7 +8,7 @@
 #    * probability >= 0.002 and < 0.01  - cell value = 1
 #    * probability >= 0.001 and < 0.001 - cell value = 0
 #
-# This script is a transcript of the steps executed manually on October 17, 2022 to produce the requested feature class.
+# This script is derived from a transcript of the steps executed manually on October 17, 2022 to produce the requested feature class.
 # It has not been "genericized" or "parameterized", but doing this should be relativel straightforward and mostly entail
 # defining a parameter for the name of the geodatabase in which the intermediate and final data product is created.
 #
