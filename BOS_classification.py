@@ -1,4 +1,4 @@
-# mcfrm_classification_october_2022.py
+# BOS_classification.py
 #
 # Given the MC-FRM 2050 probability data for the 'north' towns already combined into a single raster dataset,
 # generate a polygon feature class from it, having classified the raster probability cells as follows:
