@@ -12,3 +12,4 @@ The intention was to get the baseline working version of these tools under versi
 
 Inventory:
 * BOS_classification.py - Script implementing classification proposed by Judy Tayor on October 14, 2022.
+* MBTA_classification.py - Script implementing classification used by the MBTA, and communicated to CTPS by Hannah Lyons-Galante in the spring of 2022.
