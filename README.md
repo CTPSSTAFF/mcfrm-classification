@@ -1,15 +1,15 @@
 # mcfrm-classification
-Tools to 'classify' MC-FRM raster data and produce polygon feature classes from the classification.
+Tools to 'classify' a  MC-FRM raster probability dataset and produce a multi-part polygon feature class from the classification.
+ 
+These scripts currently _not_ parameterized. That is to say, the following are currently hard-wired:
+* the input raster dataset
+* the 'working' File GeoDatabase
+* the final output multi-part polygon feature class
 
-This repository contains scripts to 'classify' the cells in 2050 MC-FRM probability rasters and generate polygon features from this classification.  
-
-These scripts currently not parameterized. That is to say, the following are currently hard-wired:
-* the input File GeoDatabase and raster dataset
-* the output File GeoDatabase and multi-part polygon feature class
-
-Parameterization of these scripts will be implemented incrementally, as time and personnel are available.
-The intention was to get the baseline working version of these tools under version control sooner rather than later.
+Parameterization of these scripts will be implemented incrementally, as time and human resources are available.
+The intention was to get a baseline working version of each these tools under version control sooner rather than later.
 
 Inventory:
-* BOS_classification.py - Script implementing classification proposed by Judy Tayor on October 14, 2022.
 * MBTA_classification.py - Script implementing classification used by the MBTA, and communicated to CTPS by Hannah Lyons-Galante in the spring of 2022.
+* BOS_classification.py - Script implementing classification used by the City of Boston and discussed by Judy Tayor on October 14, 2022.
+* CTPS_classification_script.py - Script implementing 7-level classification for LRTP Needs Assessment, proposed by Judy Tayor on November 2, 2022.
