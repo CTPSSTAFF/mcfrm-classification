@@ -10,7 +10,7 @@
 #
 # This script is derived from a transcript of the steps executed manually on October 17, 2022 to produce the requested feature class.
 # It has not been "genericized" or "parameterized", but doing this should be relativel straightforward and mostly entail
-# defining a parameter for the name of the geodatabase in which the intermediate and final data product is created.
+# defining parameters for (1) the input raster dataset, (2) the "working" geodatabase, and (3) the final output feature class.
 #
 # -- B. Krepp, 18 October 2022
 
@@ -19,6 +19,8 @@ import arcpy
 input_probability_raster = "//lilliput/groups/Certification_Activities/Resiliency/data/mcfrm/LEVEL_1/2050/North/Probability/2050_North_Probability.gdb/raster_ds_2050_North_Probability"
 
 working_gdb = "//lilliput/groups/Certification_Activities/Resiliency/data/mcfrm/LEVEL_1/2050/North/Probability/RECLASSIFICATION_OCT2020.gdb/"
+
+final_output_fc = working_gdb + '/probability_score_fc'
 
 # Load 2050 probability raster for the 'north' towns
 arcpy.MakeRasterLayer_management(in_raster=input_probability_raster, 
@@ -134,17 +136,12 @@ arcpy.Select_analysis(in_features=input_fc,
                       where_clause="gridcode = 0")
 
 # Merge the individual polygon feature classes into a single feature class, the final product
-# First, assemble string with semicolon-delimited list of input feature classes:
-inputs_string = working_gdb + 'p_ge_5_pct_fc'
-inputs_string += ';'
-inputs_string += woring_gdb + 'p_2_5_pct_fc'
-inputs_string += ';'
-inputs_string += working_gdb + 'p_1_2_pct_fc'      
-inputs_string += ';'
-inputs_string += working_gdb +  'p_0d2_1_pct_fc'  
-inputs_string += ';'
-inputs_string += working_gdb + 'p_0d1_0d2_pct_fc'
-final_output_fc = working_gdb + 'probability_score_fc'
-arcpy.Merge_management(inputs="inputs_string,
-                       output=output_fc, 
-                       field_mappings='Id "Id" true true false 4 Long 0 0 ,First,#,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_ge_5_pct_fc,Id,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_2_5_pct_fc,Id,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_1_2_pct_fc,Id,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_0d2_1_pct_fc,Id,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_0d1_0d2_pct_fc,Id,-1,-1;gridcode "gridcode" true true false 4 Long 0 0 ,First,#,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_ge_5_pct_fc,gridcode,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_2_5_pct_fc,gridcode,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_1_2_pct_fc,gridcode,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_0d2_1_pct_fc,gridcode,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_0d1_0d2_pct_fc,gridcode,-1,-1;Shape_Length "Shape_Length" false true true 8 Double 0 0 ,First,#,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_ge_5_pct_fc,Shape_Length,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_2_5_pct_fc,Shape_Length,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_1_2_pct_fc,Shape_Length,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_0d2_1_pct_fc,Shape_Length,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_0d1_0d2_pct_fc,Shape_Length,-1,-1;Shape_Area "Shape_Area" false true true 8 Double 0 0 ,First,#,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_ge_5_pct_fc,Shape_Area,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_2_5_pct_fc,Shape_Area,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_1_2_pct_fc,Shape_Area,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_0d2_1_pct_fc,Shape_Area,-1,-1,\\lilliput\groups\Certification_Activities\Resiliency\data\mcfrm\LEVEL_1\2050\North\Probability\RECLASSIFICATION_OCT2020.gdb\p_0d1_0d2_pct_fc,Shape_Area,-1,-1')
+# First, assemble list of input feature classes:
+inputs_list = [ working_gdb + '/p_ge_5_pct_fc',
+                working_gdb + '/p_2_5_pct_fc',
+                working_gdb + '/p_1_2_pct_fc',      
+                working_gdb +  '/p_0d2_1_pct_fc',  
+                working_gdb + 'p_0d1_0d2_pct_fc' ]
+# Perform the merge
+arcpy.Merge_management(inputs=inputs_list, output=output_fc) 
+                      
