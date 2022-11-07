@@ -184,3 +184,9 @@ inputs_list = [ working_gdb + '/p_gt_10_pct_fc',
                 working_gdb + '/p_lt_0d1_pct_fc' ]
 # Perform the merge
 arcpy.Merge_management(inputs=inputs_list, output=final_output_fc)
+
+# Drop un-needed "id" field
+arcpy.DeleteField_management(final_output_fc, ["id"])
+# Rename "gridcode" field to "score"
+arcpy.AlterField_management(final_output_fc, "gridcode", "score")
+arcpy.AddMessage('Processing complete.') 
