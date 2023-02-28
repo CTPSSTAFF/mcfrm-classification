@@ -30,15 +30,15 @@ and to produce a multi-part polygon feature class from the classification.
 * probability >= 0.002 and < 0.01  - cell value = 1
 * probability >= 0.001 and < 0.001 - cell value = 0
 
-### Script Parameterization
+## Script Parameterization
 For all three scripts, the input raster dataset is hard-wired to the 2050 flood probability raster dataset for the 'North' towns.
 
-#### CTPS Classifcation Script
+### CTPS Classifcation Script
 The CTPS classification script takes two parameters:
 * the 'working' File GeoDatabase
 * the final output multi-part polygon feature class
 
-## MBTA and City of Boston Classification Scripts
+### MBTA and City of Boston Classification Scripts
 These scripts \(MBTA_classificaiton.py and BOS_classification.py\) are currently _not_ parameterized.
 That is to say, the following are currently hard-wired in them:
 * the 'working' File GeoDatabase
